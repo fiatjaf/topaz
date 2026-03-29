@@ -2,7 +2,11 @@ module backend
 
 go 1.25.0
 
-require fiatjaf.com/nostr v0.0.0-20260326203601-3acfbbca0aea
+require (
+	fiatjaf.com/nostr v0.0.0-20260326203601-3acfbbca0aea
+	github.com/rs/zerolog v1.33.0
+	golang.org/x/sync v0.20.0
+)
 
 require (
 	fiatjaf.com/lib v0.3.6 // indirect
@@ -26,7 +30,6 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/puzpuzpuz/xsync/v3 v3.5.1 // indirect
 	github.com/rs/cors v1.11.1 // indirect
-	github.com/rs/zerolog v1.33.0 // indirect
 	github.com/savsgio/gotils v0.0.0-20240704082632-aef3928b8a38 // indirect
 	github.com/templexxx/cpu v0.0.1 // indirect
 	github.com/templexxx/xhex v0.0.0-20200614015412-aed53437177b // indirect
@@ -36,12 +39,8 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.59.0 // indirect
 	golang.org/x/exp v0.0.0-20250305212735-054e65f0b394 // indirect
-	golang.org/x/mobile v0.0.0-20260312152759-81488f6aeb60 // indirect
-	golang.org/x/mod v0.34.0 // indirect
 	golang.org/x/net v0.52.0 // indirect
-	golang.org/x/sync v0.20.0 // indirect
 	golang.org/x/sys v0.42.0 // indirect
-	golang.org/x/tools v0.43.0 // indirect
 )
 
 replace fiatjaf.com/nostr => ../../nostrlib

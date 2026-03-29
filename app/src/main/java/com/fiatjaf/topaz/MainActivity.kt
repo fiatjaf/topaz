@@ -21,13 +21,14 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopazApp() {
-    var displayText by remember { mutableStateOf("Press the button to call Go!") }
+    var displayText by remember { mutableStateOf("relay not started") }
+    var relayRunning by remember { mutableStateOf(false) }
 
     MaterialTheme {
         Scaffold(
                 topBar = {
                     TopAppBar(
-                            title = { Text("Topaz - Go + Compose") },
+                            title = { Text("Topaz") },
                             colors =
                                     TopAppBarDefaults.topAppBarColors(
                                             containerColor =
@@ -49,14 +50,36 @@ fun TopazApp() {
 
                 Spacer(modifier = Modifier.height(32.dp))
 
-                Button(
-                        onClick = {
-                            // Call the Go function and update the text
-                            val result = Backend.getMessage()
-                            displayText = result
-                        },
-                        modifier = Modifier.fillMaxWidth(0.6f)
-                ) { Text("Call Go Function") }
+                Row(
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                        modifier = Modifier.fillMaxWidth(0.8f)
+                ) {
+                    Button(
+                            onClick = {
+                                // Start the relay on localhost:4869
+                                try {
+                                    Backend.startRelay("4869")
+                                    relayRunning = true
+                                    displayText = Backend.getRelayStatus()
+                                } catch (e: Exception) {
+                                    displayText = "error: ${e.message}"
+                                }
+                            },
+                            modifier = Modifier.weight(1f),
+                            enabled = !relayRunning
+                    ) { Text("Start") }
+
+                    Button(
+                            onClick = {
+                                // Stop the relay
+                                Backend.stopRelay()
+                                relayRunning = false
+                                displayText = "relay stopped"
+                            },
+                            modifier = Modifier.weight(1f),
+                            enabled = relayRunning
+                    ) { Text("stop") }
+                }
             }
         }
     }
