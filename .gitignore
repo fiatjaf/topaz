@@ -2,3 +2,4 @@ build
 .gradle
 app/libs/backend.aar
 app/libs/backend-sources.jar
+kls_database.db
