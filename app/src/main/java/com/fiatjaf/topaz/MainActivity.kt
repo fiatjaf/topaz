@@ -1,4 +1,4 @@
-package com.example.topaz
+package com.fiatjaf.topaz
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -61,4 +61,3 @@ fun TopazApp() {
         }
     }
 }
-

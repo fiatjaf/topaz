@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.topaz'
+    namespace 'com.fiatjaf.topaz'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.topaz"
+        applicationId "com.fiatjaf.topaz"
         minSdk 26
         targetSdk 34
         versionCode 1
