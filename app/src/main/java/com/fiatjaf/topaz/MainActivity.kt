@@ -28,7 +28,7 @@ fun TopazApp() {
         Scaffold(
                 topBar = {
                     TopAppBar(
-                            title = { Text("Topaz") },
+                            title = { Text("topaz") },
                             colors =
                                     TopAppBarDefaults.topAppBarColors(
                                             containerColor =
@@ -67,11 +67,10 @@ fun TopazApp() {
                             },
                             modifier = Modifier.weight(1f),
                             enabled = !relayRunning
-                    ) { Text("Start") }
+                    ) { Text("start") }
 
                     Button(
                             onClick = {
-                                // Stop the relay
                                 Backend.stopRelay()
                                 relayRunning = false
                                 displayText = "relay stopped"
