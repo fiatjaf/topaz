@@ -1,4 +1,4 @@
-build_dev: gomobile
+build_dev: gomobile format
     just gomobile debug
     ./gradlew installDebug
 
@@ -10,6 +10,9 @@ gomobile tags='_':
         cd backend/backend
         CGO_CFLAGS="-DMDB_USE_POSIX_SEM" gomobile bind -tags='{{tags}}' -androidapi 26 -target android -o ../../app/libs/backend.aar
     end
+
+format:
+    ktfmt app/src/main/java/com/fiatjaf/topaz/**.kt
 
 build_release: gomobile
     ./gradlew assembleRelease
