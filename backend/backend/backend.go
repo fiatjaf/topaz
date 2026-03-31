@@ -106,8 +106,11 @@ func StartRelay(datadir string, port string, callback StatsCallback) error {
 		return nil
 	})
 
-	time.Sleep(100 * time.Millisecond)
-	log.Printf("relay started on port %s", port)
+	go func() {
+		time.Sleep(100 * time.Millisecond)
+		log.Printf("relay started on port %s", port)
+		pushStats()
+	}()
 
 	go func() {
 		err := g.Wait()
@@ -143,13 +146,6 @@ func GetRelayStatus() string {
 		return "relay not initialized"
 	}
 	return "relay is running"
-}
-
-func GetRelayURLs(port string) string {
-	// URLs are now computed on the Kotlin side
-	// This function is kept for backward compatibility
-	log.Debug().Msg("GetRelayURLs called - URLs should be computed on Kotlin side")
-	return "[]"
 }
 
 func pushStats() {
