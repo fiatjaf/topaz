@@ -3,7 +3,7 @@ module backend
 go 1.25.0
 
 require (
-	fiatjaf.com/nostr v0.0.0-20260326203601-3acfbbca0aea
+	fiatjaf.com/nostr v0.0.0-20260330113022-2191df5dfc83
 	github.com/rs/zerolog v1.33.0
 	golang.org/x/mobile v0.0.0-20260312152759-81488f6aeb60
 	golang.org/x/sync v0.20.0
@@ -45,5 +45,3 @@ require (
 	golang.org/x/sys v0.42.0 // indirect
 	golang.org/x/tools v0.43.0 // indirect
 )
-
-replace fiatjaf.com/nostr => ../../nostrlib

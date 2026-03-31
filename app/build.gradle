@@ -4,20 +4,54 @@ plugins {
 }
 
 android {
+    def keystorePath = System.getenv("ANDROID_KEYSTORE_PATH")
+    def keystorePasswordValue = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+    def keyAliasValue = System.getenv("ANDROID_KEY_ALIAS")
+    def keyPasswordValue = System.getenv("ANDROID_KEY_PASSWORD")
+    def hasSigning = keystorePath && keystorePasswordValue && keyAliasValue && keyPasswordValue
+
     namespace 'com.fiatjaf.topaz'
     compileSdk 34
+
+    def rawVersionTag = System.getenv("GITHUB_REF_NAME") ?: System.getenv("VERSION_NAME")
+    def versionNameFromTag = null
+    if (rawVersionTag) {
+        versionNameFromTag = rawVersionTag.startsWith("v") ? rawVersionTag.substring(1) : rawVersionTag
+    }
+    def versionCodeFromEnv = System.getenv("VERSION_CODE") ?: System.getenv("GITHUB_RUN_NUMBER")
+    def versionCodeValue = 1
+    if (versionCodeFromEnv) {
+        try {
+            versionCodeValue = versionCodeFromEnv.toInteger()
+        } catch (ignored) {
+        }
+    }
 
     defaultConfig {
         applicationId "com.fiatjaf.topaz"
         minSdk 26
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        versionCode versionCodeValue
+        versionName versionNameFromTag ?: "1.0"
+    }
+
+    signingConfigs {
+        if (hasSigning) {
+            release {
+                storeFile file(keystorePath)
+                storePassword keystorePasswordValue
+                keyAlias keyAliasValue
+                keyPassword keyPasswordValue
+            }
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
+            if (hasSigning) {
+                signingConfig signingConfigs.release
+            }
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

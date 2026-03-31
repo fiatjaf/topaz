@@ -8,7 +8,7 @@ gomobile tags='_':
     if test ! -f app/libs/backend.aar -o backend/backend/backend.go -nt app/libs/backend.aar
         echo "binding gomobile..."
         cd backend/backend
-        CGO_CFLAGS="-DMDB_USE_POSIX_SEM" gomobile bind -tags='{{tags}}' -androidapi 26 -target android -o ../../app/libs/backend.aar
+        gomobile bind -tags='{{tags}}' -androidapi 26 -target android -o ../../app/libs/backend.aar
     end
 
 format:
