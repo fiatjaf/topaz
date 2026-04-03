@@ -3,7 +3,7 @@ module backend
 go 1.25.0
 
 require (
-	fiatjaf.com/nostr v0.0.0-20260330113022-2191df5dfc83
+	fiatjaf.com/nostr v0.0.0-20260403112700-2735abe0608c
 	github.com/rs/zerolog v1.33.0
 	golang.org/x/mobile v0.0.0-20260312152759-81488f6aeb60
 	golang.org/x/sync v0.20.0
